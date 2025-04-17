@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Customer Segmentation Form</h1>
+    <form id="prediction-form" method="post">
+        <label for="income">Income:</label>
+        <input type="text" name="income" id="income" required><br><br>
 
+        <label for="num_kids">Number of Kids:</label>
+        <input type="number" name="num_kids" id="num_kids" required><br><br>
+
+        <label for="num_teens">Number of Teens:</label>
+        <input type="number" name="num_teens" id="num_teens" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" required><br><br>
+
+        <label for="partner">Partner:</label>
+        <select name="partner" id="partner">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
+
+        <label for="education">Education Level:</label>
+        <select name="education" id="education">
+            <option value="Undergraduate">Undergraduate</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Postgraduate">Postgraduate</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Prediction result -->
+    <div id="prediction-result" style="display:none;">
+        <h2>Customer Segmentation Result:</h2>
+        <p><strong>Predicted Cluster:</strong> <span id="cluster"></span></p>
+    </div>
+
+    <script>
+    // JavaScript to handle form submission without reloading the page
+    const form = document.getElementById('prediction-form');
+    const predictionResultDiv = document.getElementById('prediction-result');
+    const clusterSpan = document.getElementById('cluster');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent page reload on form submit
+
+        const formData = new FormData(form);
+        fetch('/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // Debugging line to check the response
+            // Display the prediction result below the form
+            if (data.prediction_result) {
+                clusterSpan.textContent = data.prediction_result;
+                predictionResultDiv.style.display = 'block';
+            } else {
+                clusterSpan.textContent = 'Error: ' + data.error;
+                predictionResultDiv.style.display = 'block';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    </script>
+
+</body>
+</html>
