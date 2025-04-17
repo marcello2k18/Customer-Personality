@@ -1,1 +1,92 @@
+/* General Body and Layout Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
 
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* Form Styles */
+form {
+    width: 50%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Prediction Result Styles */
+#prediction-result {
+    margin-top: 30px;
+    background-color: #e9f7e9;
+    border: 1px solid #b3e6b3;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#prediction-result h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#prediction-result p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+#prediction-result span {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+    }
+}
